@@ -1,0 +1,14 @@
+.wrapper button:active, button:focus {
+    outline: none !important;
+    
+}
+.wrapper button:focus {
+    outline: none !important;
+    
+}
+
+.wrapper button::-moz-focus-inner {
+    outline: none !important;
+    border: 0 !important;
+}
+  

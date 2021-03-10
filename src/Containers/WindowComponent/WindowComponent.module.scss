@@ -1,0 +1,14 @@
+.wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background-color: grey, 0,5;
+    border: 1px solid black;
+    width: 1000px;
+    height: 500px;
+    display: flex;
+    justify-content: space-around;
+}

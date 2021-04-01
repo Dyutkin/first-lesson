@@ -32,7 +32,6 @@
     "rules": {
         "linebreak-style": "off",
         "prettier/prettier": "warn",
-        "@typescript-eslint/explicit-module-boundary-types": "off",
-        "react/prefer-stateless-function": "off"
+        "@typescript-eslint/explicit-module-boundary-types": "off"
     }
 }

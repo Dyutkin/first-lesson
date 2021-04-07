@@ -1,11 +1,17 @@
 import React from "react";
-import logo from "./logo.svg";
-import CustomCounter from "../CustomCounter/CustomCounter";
+import { Route, Switch } from "react-router-dom";
+import RegistrationPageContainer from "../RegistrationPageContainer";
+import AuthPageContainer from "../AuthPageContainer";
+import MainPageContainer from "../MainPageContainer";
 
 function App() {
   return (
     <>
-      <CustomCounter />
+      <Switch>
+        <Route path="/auth" component={AuthPageContainer} />
+        <Route path="/registration" component={RegistrationPageContainer} />
+        <Route exact path="/" component={MainPageContainer} />
+      </Switch>
     </>
   );
 }

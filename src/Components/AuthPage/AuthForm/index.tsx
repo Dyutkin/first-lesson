@@ -1,8 +1,10 @@
 import React, { FC, useState } from "react";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { userLoginAction } from "../../../store/actions";
 import PasswordInput from "../../Common/Forms/PasswordInput";
 import TextInput from "../../Common/Forms/TextInput";
+import Button from "../../Common/Forms/Button";
 import style from "./AuthForm.module.scss";
 
 interface IAuthFormState {
@@ -16,10 +18,15 @@ const AuthForm: FC = () => {
     password: "",
   });
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const onSubmit = () => {
     dispatch(userLoginAction(authFormValue.login));
     setAuthFormValue({ login: "", password: "" });
+  };
+
+  const handleRedirect = () => {
+    history.push("/registration");
   };
 
   return (
@@ -40,10 +47,14 @@ const AuthForm: FC = () => {
             formKey="password"
             title="Password"
           />
-
-          <button type="button" className={style.btn} onClick={onSubmit}>
-            LOGIN
-          </button>
+          <div className={style["btn-group"]}>
+            <Button type="button" onClick={onSubmit}>
+              LOGIN
+            </Button>
+            <Button type="button" onClick={handleRedirect}>
+              REGISTRATION
+            </Button>
+          </div>
         </form>
       </div>
     </>

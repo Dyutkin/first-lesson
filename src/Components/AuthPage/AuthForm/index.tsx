@@ -1,7 +1,7 @@
 import React, { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { userLoginAction } from "../../../store/actions";
+import { setUserLoginAction, userLogInAction } from "../../../store/actions";
 import PasswordInput from "../../Common/Forms/PasswordInput";
 import TextInput from "../../Common/Forms/TextInput";
 import Button from "../../Common/Forms/Button";
@@ -21,8 +21,8 @@ const AuthForm: FC = () => {
   const history = useHistory();
 
   const onSubmit = () => {
-    dispatch(userLoginAction(authFormValue.login));
-    setAuthFormValue({ login: "", password: "" });
+    dispatch(setUserLoginAction(true));
+    dispatch(userLogInAction({ ...authFormValue }));
   };
 
   const handleRedirect = () => {

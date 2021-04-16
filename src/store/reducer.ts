@@ -3,6 +3,9 @@ import { ActionType } from "./actions";
 
 const initialState: IState = {
   login: "",
+  password: "",
+  email: "",
+  isLogIn: false,
 };
 
 const reducer = (
@@ -10,10 +13,20 @@ const reducer = (
   action: { type: string; payload?: any }
 ) => {
   switch (action.type) {
-    case ActionType.userLogin:
+    case ActionType.setUserLogin:
       return {
         ...state,
-        login: action.payload,
+        isLogIn: action.payload,
+      };
+    case ActionType.userLogIn:
+      return {
+        ...state,
+        ...action.payload,
+      };
+    case ActionType.userRegister:
+      return {
+        ...state,
+        ...action.payload,
       };
     default:
       return state;

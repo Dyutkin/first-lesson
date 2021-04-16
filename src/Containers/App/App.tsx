@@ -3,6 +3,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import RegistrationPageContainer from "../RegistrationPageContainer";
 import AuthPageContainer from "../AuthPageContainer";
 import MainPageContainer from "../MainPageContainer";
+import UserInfoPageContainer from "../UserInfoPageContainer";
+import ErrorPageContainer from "../ErrorPageContainer";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           component={RegistrationPageContainer}
         />
         <Route exact path="/" component={MainPageContainer} />
+        <Route exact path="/404" component={ErrorPageContainer} />
+        <Route exact path="/profile" component={UserInfoPageContainer} />
         <Redirect to="/404" />
       </Switch>
     </>

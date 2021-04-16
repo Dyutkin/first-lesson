@@ -1,28 +1,47 @@
 import React, { FC, useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import PasswordInput from "../../Common/Forms/PasswordInput";
 import TextInput from "../../Common/Forms/TextInput";
 import Button from "../../Common/Forms/Button";
+import {
+  userRegistrationAction,
+  setUserLoginAction,
+} from "../../../store/actions";
+import {
+  validateEmail,
+  validateLogin,
+  validatePassword,
+} from "../../../helpers";
 import style from "./RegistrationForm.module.scss";
 
 interface IAuthFormState {
   login: string;
-  email?: string;
+  email: string;
   password: string;
   repeatPassword?: string;
 }
 
 const RegistrationForm: FC = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const [formValue, setFormValue] = useState<IAuthFormState>({
     login: "",
     email: "",
     password: "",
     repeatPassword: "",
   });
-  const isFormFull =
+  const isFormFull: boolean =
     !!formValue.login &&
     !!formValue.email &&
     !!formValue.password &&
     !!formValue.repeatPassword;
+
+  const isFormValidate: boolean =
+    validateLogin(formValue.login) &&
+    validateEmail(formValue.email) &&
+    validatePassword(formValue.password) &&
+    validatePassword(formValue.repeatPassword);
 
   const [isWrongPass, setIsWrongPass] = useState<boolean>(true);
   useEffect(() => {
@@ -45,13 +64,15 @@ const RegistrationForm: FC = () => {
       };
     }
     return () => {
-      setFormValue({
-        login: "",
-        email: "",
-        password: "",
-        repeatPassword: "",
-      });
-      setPage(1);
+      dispatch(
+        userRegistrationAction({
+          login: formValue.login,
+          email: formValue.email,
+          password: formValue.password,
+        })
+      );
+      dispatch(setUserLoginAction(true));
+      history.push("/");
     };
   };
   const getButtonText = () => {
@@ -76,12 +97,14 @@ const RegistrationForm: FC = () => {
                 title="Login"
                 formValue={formValue}
                 setFormValue={setFormValue}
+                isNeedValidation={!!true}
               />
               <TextInput
                 formKey="email"
                 title="Email"
                 formValue={formValue}
                 setFormValue={setFormValue}
+                isNeedValidation={!!true}
               />
             </>
           )) ||
@@ -92,21 +115,23 @@ const RegistrationForm: FC = () => {
                   title="Password"
                   formValue={formValue}
                   setFormValue={setFormValue}
+                  isNeedValidation={!!true}
                 />
                 <PasswordInput
                   formKey="repeatPassword"
                   title="Repeat password"
                   formValue={formValue}
                   setFormValue={setFormValue}
+                  isNeedValidation={!!true}
                 />
               </>
             ))}
-
-          {isWrongPass && !!formValue.password && !!formValue.repeatPassword && (
-            <div>
-              <p>Not match Password and Repeat password </p>
-            </div>
-          )}
+          <div className={style.error_area}>
+            {!isFormValidate && isFormFull && <p>Not all data is valid</p>}
+            {isWrongPass &&
+              !!formValue.password &&
+              !!formValue.repeatPassword && <p>Password mismatch</p>}
+          </div>
           <div className={style["btn-group"]}>
             {page === 2 && (
               <Button
@@ -119,7 +144,9 @@ const RegistrationForm: FC = () => {
             )}
             <Button
               type="button"
-              disabled={page === 2 && (!isFormFull || isWrongPass)}
+              disabled={
+                page === 2 && (!isFormFull || isWrongPass || isFormValidate)
+              }
               onClick={handleClick()}>
               {getButtonText()}
             </Button>

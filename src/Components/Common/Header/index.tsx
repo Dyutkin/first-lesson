@@ -5,17 +5,18 @@ import NavMenu from "./NavMenu";
 import Logo from "./Logo";
 import UserInfo from "./UserInfo";
 import NavButtons from "./NavButtons";
-import { getUserLogin } from "../../../store/selectors";
+import { getIsUserLogin, getUserInfo } from "../../../store/selectors";
 
 const Header = () => {
-  const login = useSelector(getUserLogin);
+  const isLogIn = useSelector(getIsUserLogin);
+  const userInfo = useSelector(getUserInfo);
 
   return (
     <>
       <header className={style.header_wrapper}>
         <Logo />
         <NavMenu />
-        {login ? <UserInfo login={login} /> : <NavButtons />}
+        {isLogIn ? <UserInfo login={userInfo.login} /> : <NavButtons />}
       </header>
     </>
   );

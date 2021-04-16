@@ -2,17 +2,17 @@ import React, { FC, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import AuthPage from "../../Components/AuthPage";
-import { getUserLogin } from "../../store/selectors";
+import { getIsUserLogin } from "../../store/selectors";
 
 const AuthPageContainer: FC = () => {
-  const login = useSelector(getUserLogin);
+  const isLogIn = useSelector(getIsUserLogin);
   const history = useHistory();
 
   const redirectOnMainPage = () => {
-    if (login) history.push("/");
+    if (isLogIn) history.push("/");
   };
 
-  useEffect(redirectOnMainPage, [login, history]);
+  useEffect(redirectOnMainPage, [isLogIn, history]);
 
   return (
     <>

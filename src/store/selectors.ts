@@ -1,5 +1,9 @@
 import { IState } from "./types";
 
-export const getUserLogin = (state: IState) => state.login;
-
-export const get = (state: IState) => state.login;
+export const getIsUserLogin = (state: IState) => state.isLogIn;
+export const getIsUserMail = (state: IState) => state.email;
+export const getUserInfo = (state: IState) => ({
+  login: state.login,
+  password: state.password,
+  email: state.email,
+});

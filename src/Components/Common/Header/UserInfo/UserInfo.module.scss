@@ -1,6 +1,48 @@
 .user-info_wrapper{
-    width: 10%;
+    display: inline-block;
+    margin: auto;
+    font-size: 60%;
+    border: 1px solid black ;
+    width: 30%;
+    margin: 0;
+    padding:  0 5px;
     display: flex;
+    flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+}
+
+.user-info_profile {
+    width: 40%;
+    display: flex;
     justify-content: center;
+
+}
+
+.text-decoration {
+    text-decoration: none;
+}
+
+.user-info_wrapper_column {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+}
+
+.user-info_wrapper_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.user-info_wrapper p {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.user-info_wrapper_row p {
+    width: 70%
 }

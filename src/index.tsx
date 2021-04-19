@@ -4,11 +4,11 @@ import { BrowserRouter } from "react-router-dom";
 import { applyMiddleware, createStore } from "redux";
 import { Provider } from "react-redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import reducer from "./store/reducer";
+import rootReducer from "./store/rootReducer";
 import App from "./Containers/App/App";
 import "./assets/style/main.scss";
 
-const store = createStore(reducer, composeWithDevTools(applyMiddleware()));
+const store = createStore(rootReducer, composeWithDevTools(applyMiddleware()));
 
 ReactDOM.render(
   <React.StrictMode>

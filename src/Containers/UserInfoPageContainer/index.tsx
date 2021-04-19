@@ -2,7 +2,7 @@ import React, { FC, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import UserInfoPage from "../../Components/UserInfoPage";
-import { getIsUserLogin } from "../../store/selectors";
+import { getIsUserLogin } from "../../store/AuthPage/selectors";
 
 const UserInfoPageContainer: FC = () => {
   const isLogIn = useSelector(getIsUserLogin);

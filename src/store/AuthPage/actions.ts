@@ -1,4 +1,4 @@
-export enum ActionType {
+export enum AuthPageActionType {
   userLogIn = "USER_LOGIN",
   userRegister = "USER_REGISTER",
   setUserLogin = "USER_LOGIN_SET",
@@ -10,28 +10,28 @@ export const userRegistrationAction = (obj: {
   password: string;
 }) => {
   return {
-    type: ActionType.userRegister,
+    type: AuthPageActionType.userRegister,
     payload: obj,
   };
 };
 
 export const userLogInAction = (obj: { login: string; password: string }) => {
   return {
-    type: ActionType.userLogIn,
+    type: AuthPageActionType.userLogIn,
     payload: obj,
   };
 };
 
 export const setUserLoginAction = (isLogIn: boolean) => {
   return {
-    type: ActionType.setUserLogin,
+    type: AuthPageActionType.setUserLogin,
     payload: isLogIn,
   };
 };
 
 export const setUserRegistration = (isLogIn: boolean) => {
   return {
-    type: ActionType.setUserLogin,
+    type: AuthPageActionType.setUserLogin,
     payload: isLogIn,
   };
 };

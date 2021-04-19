@@ -1,4 +1,4 @@
-export interface IState {
+export interface IAuthPageIState {
   login: string;
   password: string;
   email?: string;

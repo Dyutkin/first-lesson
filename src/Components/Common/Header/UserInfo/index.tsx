@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { getIsUserMail } from "../../../../store/selectors";
+import { getIsUserMail } from "../../../../store/AuthPage/selectors";
 import style from "./UserInfo.module.scss";
 
 interface IProps {

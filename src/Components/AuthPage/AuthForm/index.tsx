@@ -1,7 +1,10 @@
 import React, { FC, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { setUserLoginAction, userLogInAction } from "../../../store/actions";
+import {
+  setUserLoginAction,
+  userLogInAction,
+} from "../../../store/AuthPage/actions";
 import PasswordInput from "../../Common/Forms/PasswordInput";
 import TextInput from "../../Common/Forms/TextInput";
 import Button from "../../Common/Forms/Button";

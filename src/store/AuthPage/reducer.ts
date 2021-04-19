@@ -1,29 +1,29 @@
-import { IState } from "./types";
-import { ActionType } from "./actions";
+import { IAuthPageIState } from "./types";
+import { AuthPageActionType } from "./actions";
 
-const initialState: IState = {
+const initialState: IAuthPageIState = {
   login: "",
   password: "",
   email: "",
   isLogIn: false,
 };
 
-const reducer = (
+const authPageReducer = (
   state = initialState,
   action: { type: string; payload?: any }
 ) => {
   switch (action.type) {
-    case ActionType.setUserLogin:
+    case AuthPageActionType.setUserLogin:
       return {
         ...state,
         isLogIn: action.payload,
       };
-    case ActionType.userLogIn:
+    case AuthPageActionType.userLogIn:
       return {
         ...state,
         ...action.payload,
       };
-    case ActionType.userRegister:
+    case AuthPageActionType.userRegister:
       return {
         ...state,
         ...action.payload,
@@ -33,4 +33,4 @@ const reducer = (
   }
 };
 
-export default reducer;
+export default authPageReducer;

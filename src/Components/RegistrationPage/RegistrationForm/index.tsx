@@ -7,7 +7,7 @@ import Button from "../../Common/Forms/Button";
 import {
   userRegistrationAction,
   setUserLoginAction,
-} from "../../../store/actions";
+} from "../../../store/AuthPage/actions";
 import {
   validateEmail,
   validateLogin,

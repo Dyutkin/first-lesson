@@ -5,7 +5,7 @@ import NavMenu from "./NavMenu";
 import Logo from "./Logo";
 import UserInfo from "./UserInfo";
 import NavButtons from "./NavButtons";
-import { getIsUserLogin, getUserInfo } from "../../../store/selectors";
+import { getIsUserLogin, getUserInfo } from "../../../store/AuthPage/selectors";
 
 const Header = () => {
   const isLogIn = useSelector(getIsUserLogin);

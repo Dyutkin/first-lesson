@@ -3,4 +3,5 @@ export interface IAuthPageIState {
   password: string;
   email?: string;
   isLogIn: boolean;
+  users: any[];
 }

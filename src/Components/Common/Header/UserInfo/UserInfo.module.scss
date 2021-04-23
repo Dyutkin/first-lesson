@@ -14,9 +14,10 @@
 
 .user-info_profile {
     width: 40%;
+    height: 100%;
     display: flex;
-    justify-content: center;
-
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .text-decoration {

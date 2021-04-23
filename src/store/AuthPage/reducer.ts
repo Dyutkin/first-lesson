@@ -6,6 +6,7 @@ const initialState: IAuthPageIState = {
   password: "",
   email: "",
   isLogIn: false,
+  users: [],
 };
 
 const authPageReducer = (
@@ -27,6 +28,19 @@ const authPageReducer = (
       return {
         ...state,
         ...action.payload,
+        users: [
+          ...state.users,
+          {
+            id: state.users.length,
+            login: action.payload.login,
+            password: action.payload.password,
+          },
+        ],
+      };
+    case AuthPageActionType.setUserLogOut:
+      return {
+        ...initialState,
+        users: state.users,
       };
     default:
       return state;

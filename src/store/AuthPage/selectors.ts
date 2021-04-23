@@ -7,3 +7,9 @@ export const getUserInfo = (state: IState) => ({
   password: state.auth.password,
   email: state.auth.email,
 });
+export const getIsPasswordCorrect = (state: IState) => {
+  return state.auth.users.some((user) => user.password === state.auth.password);
+};
+export const getIsUserCorrect = (state: IState) => {
+  return state.auth.users.some((user) => user.login === state.auth.login);
+};

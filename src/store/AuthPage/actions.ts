@@ -2,6 +2,7 @@ export enum AuthPageActionType {
   userLogIn = "USER_LOGIN",
   userRegister = "USER_REGISTER",
   setUserLogin = "USER_LOGIN_SET",
+  setUserLogOut = "USER_LOGOUT",
 }
 
 export const userRegistrationAction = (obj: {
@@ -26,6 +27,12 @@ export const setUserLoginAction = (isLogIn: boolean) => {
   return {
     type: AuthPageActionType.setUserLogin,
     payload: isLogIn,
+  };
+};
+
+export const setUserLogOutAction = () => {
+  return {
+    type: AuthPageActionType.setUserLogOut,
   };
 };
 

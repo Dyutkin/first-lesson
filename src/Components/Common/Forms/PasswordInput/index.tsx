@@ -11,6 +11,7 @@ interface IProps {
   title: string;
   formValue: any;
   setFormValue: any;
+  onClick?: () => void;
   formKey: string;
   isNeedValidation?: boolean;
 }
@@ -25,6 +26,7 @@ const PasswordInput: FC<IProps> = ({
   setFormValue,
   formKey,
   isNeedValidation,
+  onClick
 }: IProps) => {
   const [isPasswordHidden, setPasswordHidden] = useState<boolean>(true);
   const [imgSrc, setImgSrc] = useState<string>(secondEye);
@@ -73,6 +75,7 @@ const PasswordInput: FC<IProps> = ({
           onChange={(e) =>
             setFormValue({ ...formValue, [formKey]: e.currentTarget.value })
           }
+          onClick={onClick}
           value={formValue[formKey]}
         />
         <div
@@ -93,6 +96,7 @@ const PasswordInput: FC<IProps> = ({
 
 PasswordInput.defaultProps = {
   isNeedValidation: false,
+  onClick: () => {},
 };
 
 export default PasswordInput;

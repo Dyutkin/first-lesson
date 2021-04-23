@@ -18,6 +18,7 @@ interface IProps {
   title: string;
   formValue: any;
   setFormValue(arg: IAuthFormState): void;
+  onClick?: () => void;
   formKey: string;
   isNeedValidation?: boolean;
 }
@@ -28,7 +29,14 @@ const data: any = {
 };
 
 const TextInput: FC<IProps> = (props: IProps) => {
-  const { title, formValue, setFormValue, formKey, isNeedValidation } = props;
+  const {
+    title,
+    formValue,
+    setFormValue,
+    formKey,
+    isNeedValidation,
+    onClick,
+  } = props;
 
   const [isValide, changeIsValide] = useState(true);
   const [messageError, setMessageError] = useState("");
@@ -63,6 +71,7 @@ const TextInput: FC<IProps> = (props: IProps) => {
         <input
           className={style.input}
           type="text"
+          onClick={onClick}
           onChange={(e) =>
             setFormValue({ ...formValue, [formKey]: e.currentTarget.value })
           }
@@ -76,6 +85,7 @@ const TextInput: FC<IProps> = (props: IProps) => {
 
 TextInput.defaultProps = {
   isNeedValidation: false,
+  onClick: () => {},
 };
 
 export default TextInput;

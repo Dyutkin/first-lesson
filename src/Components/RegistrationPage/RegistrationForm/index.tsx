@@ -145,7 +145,7 @@ const RegistrationForm: FC = () => {
             <Button
               type="button"
               disabled={
-                page === 2 && (!isFormFull || isWrongPass || isFormValidate)
+                page === 2 && (!isFormFull || isWrongPass || !isFormValidate)
               }
               onClick={handleClick()}>
               {getButtonText()}

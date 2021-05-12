@@ -26,7 +26,7 @@ const PasswordInput: FC<IProps> = ({
   setFormValue,
   formKey,
   isNeedValidation,
-  onClick
+  onClick,
 }: IProps) => {
   const [isPasswordHidden, setPasswordHidden] = useState<boolean>(true);
   const [imgSrc, setImgSrc] = useState<string>(secondEye);

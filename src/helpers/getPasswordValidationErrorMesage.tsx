@@ -3,13 +3,16 @@ const getPasswordValidationErrorMesage = (data: string) => {
     return "At least one number is required";
   }
   if (/(?=.*[!@#$%^&*])/.test(data) === false) {
-    return "at least one special character is required !@#$%^&*";
+    return "special !@#$%^&* is required";
   }
   if (/(?=.*[a-z])/.test(data) === false) {
-    return "requires at least one lowercase latin letter";
+    return "requires one lowercase latin letter";
   }
   if (/(?=.*[A-Z])/.test(data) === false) {
-    return "requires at least one uppercase latin letter";
+    return "requires one uppercase latin letter";
+  }
+  if (data.length < 6) {
+    return "Login must contain 6+ characters";
   }
   return "";
 };

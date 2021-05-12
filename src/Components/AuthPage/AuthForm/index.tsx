@@ -12,6 +12,7 @@ import style from "./AuthForm.module.scss";
 import {
   getIsPasswordCorrect,
   getIsUserCorrect,
+  getRegisterUserMail,
 } from "../../../store/AuthPage/selectors";
 
 interface IAuthFormState {
@@ -29,6 +30,7 @@ const AuthForm: FC = () => {
   const history = useHistory();
   const isPasswordCorrect = useSelector(getIsPasswordCorrect);
   const isUserCorrect = useSelector(getIsUserCorrect);
+  const userMail = useSelector(getRegisterUserMail);
   const [isShowWarning, setShowWarning] = useState<boolean>(false);
 
   useEffect(() => {
@@ -39,15 +41,16 @@ const AuthForm: FC = () => {
 
   useEffect(() => {
     if (isPasswordCorrect && isUserCorrect) {
+      dispatch(userLogInAction({ ...authFormValue, email: userMail }));
       dispatch(setUserLoginAction(true));
     }
-  }, [dispatch, isPasswordCorrect, isUserCorrect]);
+  }, [authFormValue, dispatch, isPasswordCorrect, isUserCorrect, userMail]);
 
   const onSubmit = () => {
     if (!isPasswordCorrect && !isUserCorrect) {
       setShowWarning(true);
     }
-    dispatch(userLogInAction({ ...authFormValue }));
+    dispatch(userLogInAction({ ...authFormValue, email: userMail }));
   };
 
   const handleRedirect = () => {

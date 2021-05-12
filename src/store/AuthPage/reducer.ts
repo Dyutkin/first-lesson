@@ -32,8 +32,7 @@ const authPageReducer = (
           ...state.users,
           {
             id: state.users.length,
-            login: action.payload.login,
-            password: action.payload.password,
+            ...action.payload,
           },
         ],
       };
@@ -41,6 +40,30 @@ const authPageReducer = (
       return {
         ...initialState,
         users: state.users,
+      };
+    case AuthPageActionType.changeUserPassword:
+      return {
+        ...state,
+        users: [
+          ...state.users.map((user) => {
+            if (user.login === action.payload.login) {
+              return { ...user, password: action.payload.password };
+            }
+            return user;
+          }),
+        ],
+      };
+    case AuthPageActionType.changeUserEmail:
+      return {
+        ...state,
+        users: [
+          ...state.users.map((user) => {
+            if (user.login === action.payload.login) {
+              return { ...user, email: action.payload.email };
+            }
+            return user;
+          }),
+        ],
       };
     default:
       return state;

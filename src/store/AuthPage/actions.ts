@@ -3,6 +3,9 @@ export enum AuthPageActionType {
   userRegister = "USER_REGISTER",
   setUserLogin = "USER_LOGIN_SET",
   setUserLogOut = "USER_LOGOUT",
+  checkUserPassword = "USER_PASSWORD_CHECK",
+  changeUserPassword = "USER_PASSWORD_CHANGE",
+  changeUserEmail = "USER_EMAIL_CHANGE",
 }
 
 export const userRegistrationAction = (obj: {
@@ -16,7 +19,11 @@ export const userRegistrationAction = (obj: {
   };
 };
 
-export const userLogInAction = (obj: { login: string; password: string }) => {
+export const userLogInAction = (obj: {
+  login: string;
+  password: string;
+  email?: string;
+}) => {
   return {
     type: AuthPageActionType.userLogIn,
     payload: obj,
@@ -40,5 +47,32 @@ export const setUserRegistration = (isLogIn: boolean) => {
   return {
     type: AuthPageActionType.setUserLogin,
     payload: isLogIn,
+  };
+};
+
+export const checkUserPassword = (password: string) => {
+  return {
+    type: AuthPageActionType.setUserLogin,
+    payload: password,
+  };
+};
+
+export const userSetNewPasswordAction = (obj: {
+  login: string;
+  password: string;
+}) => {
+  return {
+    type: AuthPageActionType.changeUserPassword,
+    payload: obj,
+  };
+};
+
+export const userSetNewEmailAction = (obj: {
+  login: string;
+  email: string;
+}) => {
+  return {
+    type: AuthPageActionType.changeUserEmail,
+    payload: obj,
   };
 };

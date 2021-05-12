@@ -1,11 +1,12 @@
 import React, { FC, useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import PasswordInput from "../../Common/Forms/PasswordInput";
 import TextInput from "../../Common/Forms/TextInput";
 import Button from "../../Common/Forms/Button";
 import {
   userRegistrationAction,
+  userLogInAction,
   setUserLoginAction,
 } from "../../../store/AuthPage/actions";
 import {
@@ -13,6 +14,7 @@ import {
   validateLogin,
   validatePassword,
 } from "../../../helpers";
+import { getRegisterUserLogin } from "../../../store/AuthPage/selectors";
 import style from "./RegistrationForm.module.scss";
 
 interface IAuthFormState {
@@ -31,6 +33,7 @@ const RegistrationForm: FC = () => {
     password: "",
     repeatPassword: "",
   });
+
   const isFormFull: boolean =
     !!formValue.login &&
     !!formValue.email &&
@@ -42,6 +45,17 @@ const RegistrationForm: FC = () => {
     validateEmail(formValue.email) &&
     validatePassword(formValue.password) &&
     validatePassword(formValue.repeatPassword);
+
+  const registeredUserLogin = useSelector(getRegisterUserLogin);
+  const [isLoginFree, changeisLoginFree] = useState<boolean>(true);
+  useEffect(() => {
+    dispatch(userLogInAction(formValue));
+    if (registeredUserLogin) {
+      changeisLoginFree(false);
+      return;
+    }
+    changeisLoginFree(true);
+  }, [dispatch, formValue, registeredUserLogin]);
 
   const [isWrongPass, setIsWrongPass] = useState<boolean>(true);
   useEffect(() => {
@@ -128,9 +142,10 @@ const RegistrationForm: FC = () => {
             ))}
           <div className={style.error_area}>
             {!isFormValidate && isFormFull && <p>Not all data is valid</p>}
-            {isWrongPass &&
+            {(isWrongPass &&
               !!formValue.password &&
-              !!formValue.repeatPassword && <p>Password mismatch</p>}
+              !!formValue.repeatPassword && <p>Password mismatch</p>) ||
+              (!isLoginFree && <p>Login already in use</p>)}
           </div>
           <div className={style["btn-group"]}>
             {page === 2 && (
@@ -145,7 +160,8 @@ const RegistrationForm: FC = () => {
             <Button
               type="button"
               disabled={
-                page === 2 && (!isFormFull || isWrongPass || !isFormValidate)
+                page === 2 &&
+                (!isFormFull || isWrongPass || !isFormValidate || !isLoginFree)
               }
               onClick={handleClick()}>
               {getButtonText()}

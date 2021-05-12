@@ -8,8 +8,23 @@ export const getUserInfo = (state: IState) => ({
   email: state.auth.email,
 });
 export const getIsPasswordCorrect = (state: IState) => {
-  return state.auth.users.some((user) => user.password === state.auth.password);
+  return state.auth.users.some(
+    (user) =>
+      user.password === state.auth.password && user.login === state.auth.login
+  );
 };
 export const getIsUserCorrect = (state: IState) => {
   return state.auth.users.some((user) => user.login === state.auth.login);
+};
+export const getRegisterUserMail = (state: IState) => {
+  return (
+    state.auth.users.find((user) => user.login === state.auth.login)?.email ||
+    ""
+  );
+};
+export const getRegisterUserLogin = (state: IState) => {
+  return (
+    state.auth.users.find((user) => user.login === state.auth.login)?.login ||
+    ""
+  );
 };
